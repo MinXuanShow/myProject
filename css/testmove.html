@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现点击改变布局效果</title>
+    <style>
+        div.all{
+            display:flex;flex-direction:row;flex-wrap:wrap;
+            justify-content:space-between;position:relative;
+            width: 900px;
+        }
+        div.nav a{display: block;text-decoration: none;color:gray;font-size: 18px}
+        div.nav{
+            width: 900px;display: flex;justify-content:flex-start;
+            margin:10px 0px;
+        }
+        div.nav>div{
+            height: 30px;line-height: 30px;border-bottom: 1px solid #BDC3C7;
+            width:145px;text-align: center;
+        }
+        div.nav>div.in{border: 1px solid #BDC3C7;border-bottom: none}
+        div.nav~div{z-index:10;overflow: hidden;transition: all .5s linear}
+        /*div.all div:nth-child(2){top:60px}*/
+        div.all div.p1{top:60px;left:0px;height: 500px;}
+        div.all div.p2{left:295px;top:60px;}
+        div.all div.p3{left:590px;top:60px}
+        div.all div.p4{left:590px;top:315px}
+        div.all div.p5{left:295px;top:315px}
+        div.all div.p6{left:890px;top:60px;width:0px;}
+        div.all div.p7{left:890px;top:315px;width:0px;}
+        div.nav~div>div{position: relative}
+        div.all >div.nav~div >div div:nth-child(1){
+            position:absolute ;background: black;width: 100%;height: 99%;top:-100%;
+            opacity: 0;transition: all .5s linear;z-index: 11;
+        }
+        @keyframes bounce {
+            100%{left:0px;}
+        }
+        @keyframes show {
+            100%{opacity:1;}
+        }
+        div.all >div.nav~div:hover >div div:nth-child(1){top:0;opacity: 0.5}
+        div.all >div.nav~div:hover >div div:nth-child(2){
+            animation-name: bounce;animation-duration: 0.5s;
+            animation-timing-function: linear;animation-delay: 0.5s;
+            animation-fill-mode:forwards
+        }
+        div.all >div.nav~div >div div:nth-child(2){
+            position: absolute;z-index: 12;top:80%;width: 200px;
+            height: 50px;line-height: 50px;
+            left:-100%;transition: all 1s linear;z-index: 12;
+        }
+        div.all >div.nav~div >div div:nth-child(2)>a{
+            color:white;font-weight: bold;text-decoration: none;
+            font-size: 25px;
+        }
+        div.all >div.nav~div >div div:nth-child(3){
+            position: absolute;z-index: 12;width: 50px;height: 50px;opacity: 0;
+            border-radius:50%;background:white;left: 40%;top:40%;
+            line-height: 45px;text-align: center;transition: opacity  1s linear;
+            transition: background  .3s linear;
+        }
+        div.all >div.nav~div >div div:nth-child(3)>a{text-decoration: none;color:#c0a16b;font-size:30px;}
+        div.all >div.nav~div >div div:nth-child(3):hover{background:#c0a16b}
+        div.all >div.nav~div >div div:nth-child(3):hover>a{color: #c7ddef}
+        div.all >div.nav~div:hover >div div:nth-child(3){
+            animation-name: show;animation-duration: 0.8s;
+            animation-timing-function: linear;animation-delay: 0.5s;
+            animation-fill-mode:forwards
+        }
+        /*----------------------------------------------------------------*/
+        div.all div.move1{left:295px;}
+        div.all div.move2{top:315px;left:0px}
+        div.all div.move3{top:60px;left:0px}
+        div.all div.move4{left:590px;}
+        div.all div.move5{left:295px;top:315px}
+        div.all div.move6{left:295px;top:60px;}
+        div.all div.move7{left:590px;height:0px;}
+        div.all div.move8{left:590px;top:60px;width:285px;}
+        div.all div.move9{left:590px;top:315px;width:285px;}
+
+    </style>
+</head>
+<body>
+<div class="all">
+    <div class="nav">
+        <div><a href="#"></a></div>
+        <div class="in"><a href="javascript:void(0);" onclick="nav1()">home</a></div>
+        <div><a href="javascript:void(0);" onclick="nav2()">about</a></div>
+        <div><a href="javascript:void(0);" onclick="nav3()">select</a></div>
+        <div><a href="javascript:void(0);" onclick="nav4()">shop</a></div>
+        <div><a href="#"></a></div>
+    </div>
+    <div style="position: absolute;"class="p1">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="../images/gallery/1.jpg" alt="">
+        </div>
+    </div>
+    <div style="position: absolute" class="p2">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="../images/gallery/2.jpg" alt="">
+        </div>
+    </div>
+    <div style="position: absolute"class="p3">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="../images/gallery/4.jpg" alt="" id="img3">
+        </div>
+    </div>
+    <div style="position: absolute"class="p4">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="../images/gallery/3.jpg" alt="">
+        </div>
+    </div>
+    <div style="position: absolute" class="p5">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="../images/gallery/5.jpg" alt="">
+        </div>
+    </div>
+    <div style="position: absolute"class="p6">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="../images/gallery/4.jpg" alt="" id="img3">
+        </div>
+    </div>
+    <div style="position: absolute"class="p7">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="../images/gallery/3.jpg" alt="">
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-1.11.3.js"></script>
+<script>
+    $("div.nav>div").click(function (e) {
+        e.preventDefault();
+        $(this).addClass("in").siblings().removeClass("in");
+    })
+    function nav1() {
+        $("div.all>div").removeClass("move1 move2 move3 move4 move5 move6 move7 move8 move9");
+        $("#img3").attr("src","../images/gallery/4.jpg");
+    }
+    function nav2() {
+        $("div.all>div:nth-child(2)").addClass("move1");
+        $("div.all>div:nth-child(2)").removeClass("move4 move7");
+        $("div.all>div:nth-child(4)").removeClass("move5");
+        $("div.all>div:nth-child(5)").removeClass("move6");
+        $("div.all>div:nth-child(3)").addClass("move2");
+        $("div.all>div:nth-child(6)").addClass("move3");
+        $("#img3").attr("src","../images/gallery/4.jpg");
+        $("div.all>div:nth-child(7)").removeClass("move8");
+        $("div.all>div:nth-child(8)").removeClass("move9");
+     }
+     function nav3() {
+        nav2();
+         $("div.all>div:nth-child(2)").addClass("move4");
+         $("div.all>div:nth-child(4)").addClass("move5");
+        $("#img3").attr("src","../images/gallery/5.jpg");
+         $("div.all>div:nth-child(5)").addClass("move6");
+     }
+     function nav4() {
+        nav3();
+        setTimeout(function () {
+            $("div.all>div:nth-child(2)").addClass("move7");
+            $("div.all>div:nth-child(7)").addClass("move8");
+            $("div.all>div:nth-child(8)").addClass("move9");
+        },500)
+     }
+</script>
+</body>
+</html>

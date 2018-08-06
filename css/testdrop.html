@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	#container{
+     width:200px;height: 200px;background: black;
+     position:absolute;top:200px;display:none
+    }
+    ul.dropdown{height: 100px;width: 400px;background: #c7ddef}
+   ul.dropdown>li{
+    list-style: none;float: left;width: 60px;height: 30px; text-align: center;
+    border: 1px solid black;line-height: 30px;margin-top:30px;position:relative;
+   }
+   ul.dropdown a{
+    text-decoration: none;color: black;
+   }
+   ul.down{
+    list-style:none; position:absolute; background: #00aeef;opacity:0.1;
+    overflow:hidden;height:0px;padding:0;top:200px;transition: all .5s linear;
+   }
+   ul.down>li{height:30px;width:200px; border:1px solid black}
+   ul.down>li a{
+   }
+   ul.dropdown>li:hover ul.down{top:70px;height:120px;opacity:1}
+  </style>
+ </head>
+ <body>
+ <button id='testbtn1'>测试</button>
+ <div id='container'></div>
+ <ul class="dropdown">
+  <li>
+   <a href="#">home</a>
+  </li>
+  <li>
+   <a href="#">home</a>
+   <ul class="down">
+    <li><a href="#">drop</a></li>
+    <li><a href="#">drop</a></li>
+    <li><a href="#">drop</a></li>
+   </ul>
+  </li>
+  <li><a href="#">home</a></li>
+  <li><a href="#">home</a></li>
+  <li><a href="#">home</a></li>
+ </ul>
+ <script src="js/jquery-1.11.3.js"></script>
+ <script>
+ var btn1 = $("#testbtn1");
+ var container = $("#container");
+ 
+ btn1.hover(function(){
+	container.css("transition","all 2s");
+	 container.css("display","block");
+     container.css("display");
+     container.css("top",100);
+     container.css("opacity","1");
+	 
+ },function(){
+	container.css({
+        "transition":"all 1s",
+		"top":200,
+         "opacity":"0.1"
+          });
+    setTimeout(function() {
+         container.css("display", "none");
+     }, 1000);
+ });
+ </script>
+<script>
+	/*
+	container.css("transition","all 2s");
+	 container.css("display","block");
+     container.css("display");
+     container.css("top",100);
+     container.css("opacity","1");
+	*/
+</script>
+ </body>
+</html>

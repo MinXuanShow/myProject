@@ -1,0 +1,268 @@
+*{margin:0;padding:0}
+body,html,h1{margin:0;padding:0}
+div.all{margin:0 auto;
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;/*放不下进行换行*/
+	justify-content:space-between;/*主轴对其方式：两端对齐*/
+	width:1076px;
+	font-family: Arial;
+}
+/*楼层滚动*/
+#LoutiNav {
+	width: auto;border: 1px solid #cccccc;display: none;
+	position: fixed;top: 150px;list-style: none;
+	left: 0px;z-index: 100;background: #272727;
+}
+#LoutiNav li {
+	width: 40px;
+	height: 50px;
+	border-bottom: 1px solid gray;
+	cursor: pointer;color: gray;
+}
+#LoutiNav li>div{padding:5px 5px;width: 40px}
+#LoutiNav li div>i{font:normal bold 12px Arial;}
+#LoutiNav span {display: none;}
+
+#LoutiNav li.active {
+	background: #fc721e;color: white;
+}
+
+#LoutiNav li:hover {
+	display: block;
+	color: white;
+}
+/*#LoutiNav li:hover i {display: none;}*/
+#goTop {
+	width: 40px;color: #dddddd;z-index: 100;
+	height: 40px;line-height: 40px;
+	text-align: center;background: #272727;
+	position: fixed;bottom: 30px;
+	right: 0px;cursor: pointer;
+	border-radius: 5px;display: none;
+}
+
+#goTop:hover {
+	background: #fc721e;color: white;
+}
+
+#goTop:hover span {
+	display: block;
+}
+/*#erweima {*/
+	/*width: 130px;*/
+	/*height: 130px;background: palegreen;*/
+	/*display: none;position: absolute;*/
+	/*right: 46px;bottom: 5px;*/
+	/*line-height: 130px;text-align: center;*/
+	/*font-size: 20px;border-radius: 10px;*/
+/*}*/
+/*main-box轮播图*/
+div.main-box{position:relative}
+div.banner{
+	height:700px;overflow:hidden;position:relative;background:#5e5e5e;
+}
+div.img{
+	position:relative;height:500px;
+}
+div.img>img{
+	position:absolute;opacity:0;transition:all .5s linear
+}
+div.img>img.show{z-index:10;opacity:1}
+#ck-left{
+	width:40px;height:50px;border:2px solid white;
+	border-radius:3px;position:absolute;left:5px;top:380px;
+}
+#ck-right{
+	width:40px;height:50px;border:2px solid white;
+	border-radius:3px;position:absolute;right:15px;top:380px;
+}
+#ck-left span{
+	display:block;width:0px;border:7px solid transparent;
+	border-right-color:white;margin-top:18px;margin-left:5px;
+}
+#ck-right span{
+	display:block;width:0px;border:7px solid transparent;
+	border-left-color:white;margin-top:18px;margin-left:15px;
+}
+#ck-right:hover,#ck-left:hover{
+	background:#fc721e;border:2px solid #fc721e;border-radius:3px;
+}
+div.indicators{
+	width:150px;position:absolute;z-index:12;
+	left:530px;bottom:40px;
+}
+div.indicators>span{
+	width:23px;height:3px;display:inline-block;margin-right:10px;
+	border-radius:1.5px;background:gray;
+}
+div.indicators>span.hover{background:#fc721e}
+   /*------轮播图文字-----*/
+div.banner>span{display:inline-block}
+span.bigText{
+	color:white;font-size:50px;font-weight:bold;z-index:15;
+}
+span.smText{
+	z-index:15;color:white;font-size:20px;
+	position:absolute;top:400px;width:400px;left:20px;
+}
+#NO1text{position:absolute;top:260px;left:20px;}
+#NO2text{
+	position:absolute;top:250px;left:240px;opacity:0
+}
+#NO3text{
+	position:absolute;top:200px;left:430px;opacity:0
+}
+div.picbutton{position:absolute;top:470px;left:20px;z-index:15}
+div.picbutton>span{
+	display:inline-block;
+	color:white;width:130px;height: 40px;
+	font-size:15px;line-height:40px;text-align: center;
+	border-radius: 2px;margin-right: 20px;
+}
+div.picbutton span:first-child{background:#fc721e;}
+div.picbutton span:last-child{background:#5e5e5e}
+/*轮播图下边盒子*/
+.line{/*双横线*/
+	width:60px;height:1.5px;
+	border-top:1px solid #FC721E;border-bottom:2px solid #FC721E
+}
+div.flex{
+	width:1076px;
+	position:relative;
+	display:flex;flex-direction:row;
+	flex-wrap:wrap;/*放不下进行换行*/
+	justify-content:space-between;/*主轴对其方式：两端对齐*/
+}
+div.box{
+	width:1076px;
+	position:relative;
+	display:flex;flex-direction:row;
+	flex-wrap:wrap;/*放不下进行换行*/
+	justify-content:space-between;/*主轴对其方式：两端对齐*/
+}
+div.box >div:nth-child(1){
+	width:500px;height:640px;background:#1F1F1F;
+	margin-left:20px;overflow:hidden;
+	position: absolute;top:-50px;z-index: 20;
+}
+div.box >div:nth-child(2){
+	margin-left: 550px;
+}
+/*-----------黑色格子的元素-----------------*/
+div.box >div:first-child span{
+	display:inline-block;
+}
+div.box >div:first-child >span:nth-child(1){
+	color:white;font:normal bold 33px Arial;
+	margin:40px 0 10px 25px;
+}
+div.box ul{
+	color: white;margin-left: 25px;
+	list-style: none;
+}
+div.box ul li{margin-top: 20px; border-bottom: 1px solid #5e5e5e;margin-right: 20px}
+div.box ul li>a{
+	color:white;display: inline-block;width: 300px;
+	/*溢出隐藏显示省略号*/
+	white-space:nowrap;overflow: hidden;text-overflow:ellipsis;
+}
+div.box ul li>div{padding: 10px 0;position: relative}
+div.box ul li>div>img{width: 100px;height: 80px;}
+div.box ul li>div>span{
+	width: 330px;height:60px;font-size: 14px;padding: 0 10px;
+	vertical-align:top;
+	overflow: hidden;text-overflow:ellipsis;color: #dddddd;
+}
+div.box ul li>div>p{
+	font-size: 12px;position: absolute;right: 15px;bottom: 15px;color: gray;
+}
+/*-----------黑盒子右边白盒子---------------------------*/
+div.box >div:nth-child(2){
+	width:536px;height:650px;
+	overflow:hidden;
+}
+div.box >div:nth-child(2) img{width:46px;height:46px;position:absolute;}
+div.box >div:nth-child(2) img:first-child{margin-top:80px;}
+div.box >div:nth-child(2) span{display:block;margin-bottom:20px;margin-left:70px;}
+div.box >div:nth-child(2) span:nth-child(2){margin-top:80px;}
+.AfontClass{font-size:16px;color:black}
+.PspanFont{font:normal bold 20px Arial;}
+span.PspanChildFont{font-size:14px;color:gray}
+
+
+/*---------------我们的服务----------------------------*/
+
+#main >div:nth-child(1){
+	width:1076px;height:auto;margin:0;padding:0;display:block;
+}
+		/*----小盒子----*/
+h1.boxText{
+	width:480px;height:180px;display:inline-block;
+	margin-left:40px;margin-top:20px;
+	box-shadow:1px  5px 10px #cccccc ;border-radius:3px;
+	border:1px solid #cccccc;transition:all .5s linear;
+/*	background:url(../images/resource/service-block-two-bg.jpg) ;*/
+	font-weight:normal;
+}
+div.orange{
+	width:501px;height:182px;
+	color:white;
+	background:rgba(252,114,30,0.8);
+}
+h1.bg{background:url(../images/resource/service-block-two-bg.jpg)}
+span.fontcolor{color:white}
+h1.boxText span{
+	display:block;margin-left:90px;
+	height:23px;transition:all .5s linear;
+	padding-top:20px;
+}
+h1.boxText span>a{transition:all .5s linear;}
+/*------------------------------------------------------------*/
+/*Recent Projects图片盒子*/
+div.imgboxTop{
+	width: 1076px;
+	text-align: center;
+	margin-top: 80px;
+}
+div.pic-box{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;/*放不下进行换行*/
+	justify-content:space-between;/*主轴对其方式：两端对齐*/
+}
+/*绝对定位两个板块z-index比较，两边都需设置z-index*/
+/*只有平级才能比较z-index，父元素z-index直接影响子元素*/
+/*三楼 商品展示*/
+#main>div:nth-child(3){
+	width: 1000px;height: 700px;background: #5e5e5e;margin-left: 50px;
+}
+#main>div:nth-child(3)>div{
+	text-align: center;
+}
+#main>div:nth-child(3) ul{
+	margin-top:30px;margin-left: 225px;color: gray;
+	font-size: 25px;
+}
+#main>div:nth-child(3) ul li>a{color: white ;font-size: 14px}
+#main>div:nth-child(3) ul li{
+	float: left;width:80px;margin-right: 30px;
+}
+/*四楼 行内资讯*/
+#main>div:nth-child(4){
+	width: 1000px;height: 500px;background: #c0a16b;margin-left: 50px;
+}
+/*底部*/
+div.all footer{
+	width: 1000px;height: 700px;background:url("../images/background/footer-bg.jpg");
+	background-size:100% 100%;overflow: hidden;margin-left: 50px;
+}
+div.all footer>div:nth-child(1){
+	background: rgba(0,0,0,.6);width: 100%;height: 90%;
+}
+div.all footer>div:nth-child(2){
+	background: black;width: 100%;height: 10%;
+}
+div.all footer>div:nth-child(2)>p{
+	color: white;padding: 30px 300px;
+}

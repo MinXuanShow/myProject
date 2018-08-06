@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现点击改变布局效果</title>
+    <style>
+        .Line{/*双横线*/
+            width:80px;height:1.5px;
+            border-top:1px solid #FC721E;border-bottom:2px solid #FC721E
+        }
+        div.big{
+            display:flex;flex-direction:row;flex-wrap:wrap;
+            justify-content:space-between;position:relative;
+            width: 900px;margin:0px 30px ;height: 2500px;
+        }
+        div.nav a{display: block;text-decoration: none;color:gray;font-size: 18px}
+        div.nav{
+            width: 600px;display: flex;justify-content:flex-start;
+            margin:0 auto;
+        }
+        div.nav>div{
+            height: 30px;line-height: 30px;border-bottom: 1px solid #BDC3C7;
+            width:145px;text-align: center;
+        }
+        div.nav>div.in{border: 1px solid #BDC3C7;border-bottom: none}
+        div.nav~div.p{
+            z-index:10;overflow: hidden;transition: all .5s linear;
+            box-shadow:1px  -3px 20px #cccccc ;border-radius:3px;
+        }
+        /*div.big div:nth-child(2){top:60px}*/
+        div.big div.p1{top:80px;left:20px;}
+        div.big div.p2{left:362px;top:80px;}
+        div.big div.p3{left:704px;top:80px;}
+        div.big div.p4{left:704px;top:384px;}
+        div.big div.p5{left:362px;top:384px;}
+        div.big div.p6{left:1056px;top:80px;width:0px;}
+        div.big div.p7{left:1056px;top:335px;width:0px;}
+        div.nav~div.p>div{position: relative}
+        div.big >div.nav~div.p >div div:nth-child(1){
+            position:absolute ;background: black;width: 100%;height: 99%;top:-100%;
+            opacity: 0;transition: all .5s linear;z-index: 11;
+        }
+        @keyframes bounce {
+            100%{left:0px;}
+        }
+        @keyframes show {
+            100%{opacity:1;}
+        }
+        div.big >div.nav~div.p:hover >div div:nth-child(1){top:0;opacity: 0.5}
+        div.big >div.nav~div.p:hover >div div:nth-child(2){
+            animation-name: bounce;animation-duration: 0.5s;
+            animation-timing-function: linear;animation-delay: 0.5s;
+            animation-fill-mode:forwards
+        }
+        div.big >div.nav~div.p >div div:nth-child(2){
+            position: absolute;z-index: 12;top:80%;width: 200px;
+            height: 50px;line-height: 50px;
+            left:-100%;transition: all 1s linear;z-index: 12;
+        }
+        div.big >div.nav~div.p >div div:nth-child(2)>a{
+            color:white;font-weight: bold;text-decoration: none;
+            font-size: 25px;
+        }
+        div.big >div.nav~div.p >div div:nth-child(3){
+            position: absolute;z-index: 12;width: 50px;height: 50px;opacity: 0;
+            border-radius:50%;background:white;left: 40%;top:40%;
+            line-height: 45px;text-align: center;transition: opacity  1s linear;
+            transition: background  .3s linear;
+        }
+        div.big >div.nav~div.p >div >div:nth-child(3)>a{text-decoration: none;color:#c0a16b;font-size:30px;}
+        div.big >div.nav~div.p >div >div:nth-child(3):hover{background:#c0a16b}
+        div.big >div.nav~div.p >div >div:nth-child(3):hover>a{color: #c7ddef}
+        div.big >div.nav~div.p:hover >div div:nth-child(3){
+            animation-name: show;animation-duration: 0.8s;
+            animation-timing-function: linear;animation-delay: 0.5s;
+            animation-fill-mode:forwards
+        }
+        /*----------------------------------------------------------------*/
+        div.big >div.move1{left:362px;}
+        div.big >div.move2{top:384px;left:20px}
+        div.big >div.move3{top:80px;left:20px}
+        div.big >div.move4{left:704px;}
+        div.big >div.move5{left:362px;top:384px}
+        div.big >div.move6{left:362px;top:80px;}
+        div.big >div.move7{left:704px;height:0px;}
+        div.big >div.move8{left:704px;top:80px;width:342px;}
+        div.big >div.move9{left:704px;top:384px;width:342px;}
+        /*按钮*/
+        div.big>div.p7+a{
+            display: block;text-decoration: none;
+            width: 200px;height: 50px;color: white;
+            background: #272727;position: absolute;
+            top:740px;left: 50%;line-height: 50px;text-align: center;
+            transition: all .3s linear;border-radius: 3px;
+        }
+        div.big>div.p7+a:hover{background:#fc721e }
+        /*加入东方*/
+        div.big div:nth-child(10){
+            width: 1000px;height: 400px;background: url("images/background/image-1.jpg") no-repeat fixed;
+            background-size: 100% 100%;
+            position: absolute;top:850px;left:20px;overflow: hidden;
+        }
+        div.big div:nth-child(10) >div{
+            width: 100%;height: 100%;background: rgba(0,0,0,.3);
+            text-align: center;
+        }
+        div.big div:nth-child(10)>div>p{
+            margin: 0;padding: 120px 0 30px 0;color: white;font-size: 20px;
+        }
+        div.big div:nth-child(10)>div>h1{color: white;font-size: 38px;padding-bottom: 30px}
+        div.big div:nth-child(10)>div>a{
+            display: inline-block ;text-decoration: none;width: 120px;height: 40px;
+            background: #272727;line-height: 40px;margin-right:10px;color: white;
+            font-size: 14px;margin-top: 20px;border-radius: 3px;
+        }
+        div.big div:nth-child(10) >div>a:hover{background: #fc721e}
+        div.big div:nth-child(11){
+            width: 1000px;height: 700px;position: absolute;
+            top:1250px;left: 20px;border: 1px solid #fc721e;
+            display: flex;flex-direction: row;flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+        div.big div:nth-child(11)>div{
+            width: 495px;height: 700px;
+            border: 1px solid #1F1F1F;
+        }
+        #form>p{
+            width: 400px;margin: 20px 0 20px 50px;
+        }
+        #form >p>select{
+            width:195px;height:30px;outline: none;border: none;
+            color: gray;
+        }
+        #form>p>input{
+            outline: none;border: none;height: 30px;width: 195px;
+        }
+        #form>p>textarea{
+            outline: none; border:1px solid #fc721e;width: 380px;
+            padding: 20px 10px 0 10px;font-size: 16px;
+        }
+        #form>p>button{
+            color: white;display: block;background: #1F1F1F;
+            outline: none;border: none;width: 400px;height: 50px;
+            transition: all .3s linear;border-radius: 3px;
+        }
+        #form>p>button:hover{ background: #fc721e}
+        div.big div:nth-child(12){
+            width: 1000px;height: 500px;background: url("images/background/image-2.jpg") no-repeat fixed;
+            background-size:100% 100% ;
+            position: absolute;top:1953px;left: 20px;
+        }
+        div.big div:nth-child(12)>div{
+            width: 100%;height: 100%;background: rgba(0,0,0,.6);
+        }
+    </style>
+</head>
+<body>
+<div class="big">
+    <div class="nav">
+        <div><a href="#"></a></div>
+        <div class="in"><a href="javascript:void(0);" onclick="nav1()">home</a></div>
+        <div><a href="javascript:void(0);" onclick="nav2()">about</a></div>
+        <div><a href="javascript:void(0);" onclick="nav3()">select</a></div>
+        <div><a href="javascript:void(0);" onclick="nav4()">shop</a></div>
+        <div><a href="#"></a></div>
+    </div>
+    <div style="position: absolute;"class=" p p1">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="images/gallery/1.jpg" alt=""style="width: 332px;height: 600px">
+        </div>
+    </div>
+    <div style="position: absolute" class="p p2">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="images/gallery/2.jpg" alt="" style="width: 332px;height: 294px">
+        </div>
+    </div>
+    <div style="position: absolute"class="p p3">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="images/gallery/4.jpg" alt="" id="img3" style="width: 332px;height: 294px">
+        </div>
+    </div>
+    <div style="position: absolute"class="p p4">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="images/gallery/3.jpg" alt="" style="width: 332px;height: 294px">
+        </div>
+    </div>
+    <div style="position: absolute" class="p p5">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="images/gallery/5.jpg" alt="" style="width: 332px;height: 294px">
+        </div>
+    </div>
+    <div style="position: absolute"class="p p6">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="images/gallery/4.jpg" alt="" id="img3"style="width: 332px;height: 294px">
+        </div>
+    </div>
+    <div style="position: absolute"class="p p7">
+        <div>
+            <div></div>
+            <div><a href="">ABOUT ME</a></div>
+            <div><a href="#">∞</a></div>
+            <img src="images/gallery/3.jpg" alt=""style="width: 332px;height: 294px">
+        </div>
+    </div>
+    <a href="#">更 多 案 例</a>
+    <div>
+        <div>
+                <p>赶 紧 加 入 东 方 装 饰 城</p>
+                <h1>马 上  让 你 的 家 变 的 更 温 馨 ！</h1>
+                <a href="">联系我们</a>
+                <a href="">进入商城</a>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h1>容我想想这个模块的内容....</h1>
+        </div>
+        <div>
+            <form action="#"style="margin-top: 50px" id="form">
+                <div style="font:bold 35px Arial;color:#1F1F1F">免 费 报 价 表</div>
+                <span class="Line"style="display: block;margin-top: 10px"></span>
+                <p>
+                    <select name="" id="">
+                        <option value="">木地板</option>
+                        <option value="">瓷砖</option>
+                        <option value="">灯饰</option>
+                        <option value="">家居</option>
+                    </select>
+                    <input type="text"placeholder="你的姓名：">
+                </p>
+                <p>
+                    <input type="email" placeholder="你的邮箱：">
+                    <input type="email" placeholder="你的联系方式：">
+                </p>
+                <p>
+                    <textarea name="" id="" cols="30" rows="10" placeholder="备注："></textarea>
+                </p>
+                <p><button>免 费 报 价</button></p>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h1 style="margin: 0;color: white">这里还要放轮播图,轮播设计师</h1>
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    $("div.nav>div").click(function (e) {
+        e.preventDefault();
+        $(this).addClass("in").siblings().removeClass("in");
+    })
+    function nav1() {
+        $("div.big>div").removeClass("move1 move2 move3 move4 move5 move6 move7 move8 move9");
+        $("#img3").attr("src","images/gallery/4.jpg");
+    }
+    function nav2() {
+        $("div.big>div:nth-child(2)").addClass("move1");
+        $("div.big>div:nth-child(2)").removeClass("move4 move7");
+        $("div.big>div:nth-child(4)").removeClass("move5");
+        $("div.big>div:nth-child(5)").removeClass("move6");
+        $("div.big>div:nth-child(3)").addClass("move2");
+        $("div.big>div:nth-child(6)").addClass("move3");
+        $("#img3").attr("src","images/gallery/4.jpg");
+        $("div.big>div:nth-child(7)").removeClass("move8");
+        $("div.big>div:nth-child(8)").removeClass("move9");
+     }
+     function nav3() {
+        nav2();
+         $("div.big>div:nth-child(2)").addClass("move4");
+         $("div.big>div:nth-child(4)").addClass("move5");
+        $("#img3").attr("src","images/gallery/5.jpg");
+         $("div.big>div:nth-child(5)").addClass("move6");
+     }
+     function nav4() {
+        nav3();
+        setTimeout(function () {
+            $("div.big>div:nth-child(2)").addClass("move7");
+            $("div.big>div:nth-child(7)").addClass("move8");
+            $("div.big>div:nth-child(8)").addClass("move9");
+        },500)
+     }
+</script>
+</body>
+</html>
